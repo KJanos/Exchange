@@ -34,15 +34,15 @@ namespace Exchange
                 }
                 else if (combo_To.SelectedItem == "USD")
                 {
-                    result =temp * 26.8 ;
+                    result =temp / 26.8 ;
                 }
                 else if (combo_To.SelectedItem == "EUR")
                 {
-                    result = temp * 33.4;
+                    result = temp / 33.4;
                 }
                 else if (combo_To.SelectedItem == "RUB")
                 {
-                    result = temp * 0.42;
+                    result = temp / 0.42;
                 }
                 else if (combo_To.SelectedItem == "HUF")
                 {
@@ -56,7 +56,7 @@ namespace Exchange
             {
                 if (combo_To.SelectedItem == "UAH")
                 {
-                    result = temp / 26.8;
+                    result = temp * 26.8;
                 }
                 else if (combo_To.SelectedItem == "USD")
                 {
@@ -64,7 +64,7 @@ namespace Exchange
                 }
                 else if (combo_To.SelectedItem == "EUR")
                 {
-                    result = temp / 0.8;
+                    result = temp * 0.8;
                 }
                 else if (combo_To.SelectedItem == "RUB")
                 {
@@ -81,11 +81,11 @@ namespace Exchange
             {
                 if (combo_To.SelectedItem == "UAH")
                 {
-                    result = temp / 33.8;
+                    result = temp * 33.8;
                 }
                 else if (combo_To.SelectedItem == "USD")
                 {
-                    result = temp * 0.8;
+                    result = temp / 0.8;
                 }
                 else if (combo_To.SelectedItem == "EUR")
                 {
@@ -106,7 +106,7 @@ namespace Exchange
             {
                 if (combo_To.SelectedItem == "UAH")
                 {
-                    result = temp / 0.42;
+                    result = temp * 0.42;
                 }
                 else if (combo_To.SelectedItem == "USD")
                 {
@@ -151,6 +151,12 @@ namespace Exchange
                 }
             }
             text_Result.Text = Convert.ToString(result);
+        }
+
+        private void button_Clear_Click(object sender, EventArgs e)
+        {
+            text_Insert.Text = "";
+            text_Result.Text = "";
         }
     }
 }
