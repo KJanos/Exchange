@@ -36,6 +36,8 @@
             this.combo_To = new System.Windows.Forms.ComboBox();
             this.button_Result = new System.Windows.Forms.Button();
             this.button_Clear = new System.Windows.Forms.Button();
+            this.button_Add = new System.Windows.Forms.Button();
+            this.button_Remove = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // text_Insert
@@ -118,11 +120,33 @@
             this.button_Clear.UseVisualStyleBackColor = true;
             this.button_Clear.Click += new System.EventHandler(this.button_Clear_Click);
             // 
+            // button_Add
+            // 
+            this.button_Add.Location = new System.Drawing.Point(58, 188);
+            this.button_Add.Name = "button_Add";
+            this.button_Add.Size = new System.Drawing.Size(75, 23);
+            this.button_Add.TabIndex = 8;
+            this.button_Add.Text = "Add";
+            this.button_Add.UseVisualStyleBackColor = true;
+            this.button_Add.Click += new System.EventHandler(this.button_Add_Click);
+            // 
+            // button_Remove
+            // 
+            this.button_Remove.Location = new System.Drawing.Point(188, 187);
+            this.button_Remove.Name = "button_Remove";
+            this.button_Remove.Size = new System.Drawing.Size(75, 23);
+            this.button_Remove.TabIndex = 9;
+            this.button_Remove.Text = "Remove Last Item";
+            this.button_Remove.UseVisualStyleBackColor = true;
+            this.button_Remove.Click += new System.EventHandler(this.button_Remove_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(494, 261);
+            this.Controls.Add(this.button_Remove);
+            this.Controls.Add(this.button_Add);
             this.Controls.Add(this.button_Clear);
             this.Controls.Add(this.button_Result);
             this.Controls.Add(this.combo_To);
@@ -144,10 +168,12 @@
         private System.Windows.Forms.TextBox text_Result;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox combo_From;
-        private System.Windows.Forms.ComboBox combo_To;
         private System.Windows.Forms.Button button_Result;
         private System.Windows.Forms.Button button_Clear;
+        private System.Windows.Forms.Button button_Add;
+        public System.Windows.Forms.ComboBox combo_From;
+        public System.Windows.Forms.ComboBox combo_To;
+        private System.Windows.Forms.Button button_Remove;
     }
 }
 

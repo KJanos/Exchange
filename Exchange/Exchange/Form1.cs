@@ -17,12 +17,15 @@ namespace Exchange
             InitializeComponent();
         }
 
+        
+        
+
         private void list_from_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void button_Result_Click(object sender, EventArgs e)
+        public void button_Result_Click(object sender, EventArgs e)
         {
             double temp = Double.Parse(text_Insert.Text);
             double result = 0;
@@ -152,11 +155,29 @@ namespace Exchange
             }
             text_Result.Text = Convert.ToString(result);
         }
+        
 
-        private void button_Clear_Click(object sender, EventArgs e)
+        public void button_Clear_Click(object sender, EventArgs e)
         {
             text_Insert.Text = "";
             text_Result.Text = "";
+        }
+
+        public void button_Add_Click(object sender, EventArgs e)
+        {
+            Form2 FormAdd = new Form2();
+            FormAdd.ShowDialog();
+            string s = FormAdd.textBox1.Text;
+            combo_From.Items.Add(s);
+            combo_To.Items.Add(s);
+        }
+
+        private void button_Remove_Click(object sender, EventArgs e)
+        {
+            var sel1 = combo_From.SelectedItem;
+            var sel2 = combo_To.SelectedItem;
+            combo_From.Items.Remove(sel1);
+            combo_To.Items.Remove(sel2);
         }
     }
 }
