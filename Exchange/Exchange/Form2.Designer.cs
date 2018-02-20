@@ -33,6 +33,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textDiff = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button_Add
@@ -71,15 +72,25 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(209, 35);
+            this.label3.Location = new System.Drawing.Point(136, 35);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 17);
+            this.label3.Size = new System.Drawing.Size(138, 17);
             this.label3.TabIndex = 4;
-            this.label3.Text = "1 UAH = ";
+            this.label3.Text = "1 of new Currency = ";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(386, 40);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(37, 17);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "UAH";
             // 
             // Form2
             // 
             this.ClientSize = new System.Drawing.Size(672, 236);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textDiff);
             this.Controls.Add(this.label2);
@@ -100,5 +111,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.TextBox textDiff;
+        private System.Windows.Forms.Label label4;
     }
 }
