@@ -12,13 +12,32 @@ namespace Exchange
 {
     public partial class Form1 : Form
     {
+        List<CurrencyInfo> Currency = new List<CurrencyInfo>() { };
         public Form1()
         {
             InitializeComponent();
+            CurrencyInfo UAH = new CurrencyInfo("UAH", 1);
+            CurrencyInfo EUR = new CurrencyInfo("EUR", 35);
+            CurrencyInfo USD = new CurrencyInfo("EUR", 27);
+            CurrencyInfo RUB = new CurrencyInfo("RUB", 0.42);
+            CurrencyInfo HUF = new CurrencyInfo("HUF", 0.107);
+            Currency.Add(UAH);
+            Currency.Add(EUR);
+            Currency.Add(USD);
+            Currency.Add(RUB);
+            Currency.Add(HUF);
+            for (int i = 0; i < Currency.Count; i++)
+            {
+                combo_From.Items.Add(Currency[i].Name);
+                combo_To.Items.Add(Currency[i].Name);
+            }
         }
+        
+
 
         public static double diff = 0;
         
+
 
         private void list_from_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -27,7 +46,28 @@ namespace Exchange
 
         public void button_Result_Click(object sender, EventArgs e)
         {
-            try
+            double inner = Double.Parse(text_Insert.Text);
+            int k = combo_From.SelectedIndex;
+            for (int i = 0; i < combo_From.Items.Count; i++)
+            {
+                if (i == k)
+                {
+                    diff = Currency[i].diff;
+                }
+            }
+            double res = inner * diff;
+            k = combo_To.SelectedIndex;
+            for (int i = 0; i < combo_To.Items.Count; i++)
+            {
+                if (i == k)
+                {
+                    diff = Currency[i].diff;
+                }
+            }
+            double result = res / diff;
+            text_Result.Text = result.ToString();
+           
+           /* try
             {
                 double inner = Double.Parse(text_Insert.Text);
                 string sel1 = combo_From.SelectedItem.ToString();
@@ -75,7 +115,7 @@ namespace Exchange
             catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-            }
+            }*/
         }
         
 
@@ -92,9 +132,14 @@ namespace Exchange
                 Form2 FormAdd = new Form2();
                 FormAdd.ShowDialog();
                 string s = FormAdd.textCurrency.Text;
-                combo_From.Items.Add(s);
-                combo_To.Items.Add(s);
                 diff = Double.Parse(FormAdd.textDiff.Text);
+                CurrencyInfo ADD = new CurrencyInfo(s, diff);
+                Currency.Add(ADD);
+                int k = Currency.Count - 1;
+                combo_From.Items.Add(Currency[k].Name);
+                combo_To.Items.Add(Currency[k].Name);
+
+
             }
             catch(Exception ex)
             {
