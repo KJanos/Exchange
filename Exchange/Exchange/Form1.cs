@@ -50,22 +50,10 @@ namespace Exchange
             {
                 double inner = Double.Parse(text_Insert.Text);
                 int k = combo_From.SelectedIndex;
-                for (int i = 0; i < combo_From.Items.Count; i++)
-                {
-                    if (i == k)
-                    {
-                        diff = Currency[i].diff;
-                    }
-                }
+                diff = Currency[k].diff;
                 double res = inner * diff;
                 k = combo_To.SelectedIndex;
-                for (int i = 0; i < combo_To.Items.Count; i++)
-                {
-                    if (i == k)
-                    {
-                        diff = Currency[i].diff;
-                    }
-                }
+                diff = Currency[k].diff;
                 double result = res / diff;
                 text_Result.Text = result.ToString();
             }
@@ -95,8 +83,6 @@ namespace Exchange
                 int k = Currency.Count - 1;
                 combo_From.Items.Add(Currency[k].Name);
                 combo_To.Items.Add(Currency[k].Name);
-
-
             }
             catch(Exception ex)
             {
