@@ -18,7 +18,7 @@ namespace Exchange
             InitializeComponent();
             CurrencyInfo UAH = new CurrencyInfo("UAH", 1);
             CurrencyInfo EUR = new CurrencyInfo("EUR", 35);
-            CurrencyInfo USD = new CurrencyInfo("EUR", 27);
+            CurrencyInfo USD = new CurrencyInfo("USD", 27);
             CurrencyInfo RUB = new CurrencyInfo("RUB", 0.42);
             CurrencyInfo HUF = new CurrencyInfo("HUF", 0.107);
             Currency.Add(UAH);
@@ -46,76 +46,33 @@ namespace Exchange
 
         public void button_Result_Click(object sender, EventArgs e)
         {
-            double inner = Double.Parse(text_Insert.Text);
-            int k = combo_From.SelectedIndex;
-            for (int i = 0; i < combo_From.Items.Count; i++)
-            {
-                if (i == k)
-                {
-                    diff = Currency[i].diff;
-                }
-            }
-            double res = inner * diff;
-            k = combo_To.SelectedIndex;
-            for (int i = 0; i < combo_To.Items.Count; i++)
-            {
-                if (i == k)
-                {
-                    diff = Currency[i].diff;
-                }
-            }
-            double result = res / diff;
-            text_Result.Text = result.ToString();
-           
-           /* try
+            try
             {
                 double inner = Double.Parse(text_Insert.Text);
-                string sel1 = combo_From.SelectedItem.ToString();
-                string sel2 = combo_To.SelectedItem.ToString();
-                switch (sel1)
+                int k = combo_From.SelectedIndex;
+                for (int i = 0; i < combo_From.Items.Count; i++)
                 {
-                    case "UAH":
-                        diff = 1;
-                        break;
-                    case "USD":
-                        diff = 27;
-                        break;
-                    case "EUR":
-                        diff = 35;
-                        break;
-                    case "RUB":
-                        diff = 0.42;
-                        break;
-                    case "HUF":
-                        diff = 0.1;
-                        break;
+                    if (i == k)
+                    {
+                        diff = Currency[i].diff;
+                    }
                 }
                 double res = inner * diff;
-                switch (sel2)
+                k = combo_To.SelectedIndex;
+                for (int i = 0; i < combo_To.Items.Count; i++)
                 {
-                    case "UAH":
-                        diff = 1;
-                        break;
-                    case "USD":
-                        diff = 27;
-                        break;
-                    case "EUR":
-                        diff = 35;
-                        break;
-                    case "RUB":
-                        diff = 0.42;
-                        break;
-                    case "HUF":
-                        diff = 0.1;
-                        break;
+                    if (i == k)
+                    {
+                        diff = Currency[i].diff;
+                    }
                 }
                 double result = res / diff;
                 text_Result.Text = result.ToString();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-            }*/
+            }
         }
         
 
