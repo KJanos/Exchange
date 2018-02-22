@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace Exchange
 {
-    class CurrencyInfo
+    public class CurrencyModel
     {
-        public string Name{get; set;}
-        public double diff { get; set; }
-        public CurrencyInfo(string nm, double dif)
+        public string Name { get; set; }
+        public double Diff { get; set; }
+
+        public CurrencyModel(string nm, double dif)
         {
             Name = nm;
-            diff = dif;
+            Diff = dif;
         }
     }
 }

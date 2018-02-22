@@ -7,29 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Exchange.Managers;
 namespace Exchange
 {
     public partial class Form1 : Form
     {
-        List<CurrencyInfo> Currency = new List<CurrencyInfo>() { };
+        ConvertorManager manager;
+        List<CurrencyModel> items;
+
         public Form1()
         {
             InitializeComponent();
-            CurrencyInfo UAH = new CurrencyInfo("UAH", 1);
-            CurrencyInfo EUR = new CurrencyInfo("EUR", 35);
-            CurrencyInfo USD = new CurrencyInfo("USD", 27);
-            CurrencyInfo RUB = new CurrencyInfo("RUB", 0.42);
-            CurrencyInfo HUF = new CurrencyInfo("HUF", 0.107);
-            Currency.Add(UAH);
-            Currency.Add(EUR);
-            Currency.Add(USD);
-            Currency.Add(RUB);
-            Currency.Add(HUF);
-            for (int i = 0; i < Currency.Count; i++)
+
+            manager = new ConvertorManager();
+            items = manager.GetItems();
+            
+            for (int i = 0; i < items.Count; i++)
             {
-                combo_From.Items.Add(Currency[i].Name);
-                combo_To.Items.Add(Currency[i].Name);
+                combo_From.Items.Add(items[i].Name);
+                combo_To.Items.Add(items[i].Name);
             }
         }
         
@@ -49,13 +45,11 @@ namespace Exchange
             try
             {
                 double inner = Double.Parse(text_Insert.Text);
-                int k = combo_From.SelectedIndex;
-                diff = Currency[k].diff;
-                double res = inner * diff;
-                k = combo_To.SelectedIndex;
-                diff = Currency[k].diff;
-                double result = res / diff;
-                text_Result.Text = result.ToString();
+                int from = combo_From.SelectedIndex;
+                int to = combo_To.SelectedIndex;
+
+                double res = manager.Convert(from, to, inner);
+                text_Result.Text = res.ToString();
             }
             catch (Exception ex)
             {
@@ -76,13 +70,13 @@ namespace Exchange
             {
                 Form2 FormAdd = new Form2();
                 FormAdd.ShowDialog();
-                string s = FormAdd.textCurrency.Text;
+                string name = FormAdd.textCurrency.Text;
                 diff = Double.Parse(FormAdd.textDiff.Text);
-                CurrencyInfo ADD = new CurrencyInfo(s, diff);
-                Currency.Add(ADD);
-                int k = Currency.Count - 1;
-                combo_From.Items.Add(Currency[k].Name);
-                combo_To.Items.Add(Currency[k].Name);
+                CurrencyModel newCurrency = new CurrencyModel(name, diff);
+                manager.AddItem(newCurrency);
+
+                combo_From.Items.Add(name);
+                combo_To.Items.Add(name);
             }
             catch(Exception ex)
             {
@@ -92,10 +86,9 @@ namespace Exchange
 
         private void button_Remove_Click(object sender, EventArgs e)
         {
-            var sel1 = combo_From.SelectedItem;
-            var sel2 = combo_To.SelectedItem;
-            combo_From.Items.Remove(sel1);
-            combo_To.Items.Remove(sel2);
+            string indexItem = combo_From.SelectedIndex.ToString();
+            manager.RemoveItem(Convert.ToInt32(indexItem));
+            combo_From.Items.Remove(indexItem);
         }
     }
 }
